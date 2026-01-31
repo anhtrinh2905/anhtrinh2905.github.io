@@ -5,9 +5,11 @@ export default function App() {
   const greeting = getGreeting();
 
   return (
-    <BubbleMenu 
-      logo={'cat_logo.svg'} 
-      greeting={greeting}
-    />
+    <div>
+      <BubbleMenu 
+        logo={'cat_logo.svg'} 
+        greeting={greeting}
+      />
+    </div>
   )
 }

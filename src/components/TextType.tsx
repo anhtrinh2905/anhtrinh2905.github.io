@@ -3,6 +3,8 @@
 import { ElementType, useEffect, useRef, useState, createElement, useMemo, useCallback } from 'react';
 import { gsap } from 'gsap';
 import { textTyping } from '@/lib/greeting';
+import SoftButton from './SoftButton';
+import { useRouter } from 'next/navigation';
 
 interface TextTypeProps {
   className?: string;
@@ -53,6 +55,7 @@ const TextType = ({
   const [isVisible, setIsVisible] = useState(!startOnVisible);
   const cursorRef = useRef<HTMLSpanElement>(null);
   const containerRef = useRef<HTMLElement>(null);
+  const router = useRouter();
 
   const textArray = useMemo(() => (Array.isArray(text) ? text : [text]), [text]);
 
@@ -66,6 +69,13 @@ const TextType = ({
     if (textColors.length === 0) return;
     return textColors[currentTextIndex % textColors.length];
   };
+
+  const handleExploreMe = () => {
+    router.push('/home');
+  }
+  const handleContactMe = () => {
+    router.push('/contact')
+  }
 
   useEffect(() => {
     if (!startOnVisible || !containerRef.current) return;
@@ -186,23 +196,37 @@ const TextType = ({
         `,
         ...props
     },
-    <span 
-        className="inline" 
-        style={{ 
-            color: getCurrentTextColor() || 'inherit',
-            fontSize: '40px'
-        }}
-    >
-        {displayedText}
-    </span>,
-    showCursor && (
+    <div className="flex flex-col items-center gap-10 text-center">
+    <h1 className="text-5xl font-semibold tracking-wide">
+        WELCOME TO MY PORTFOLIO!
+    </h1>
+
+    <div className="flex items-center">
         <span
-        ref={cursorRef}
-        className={`ml-1 inline-block opacity-100 ${shouldHideCursor ? 'hidden' : ''} ${cursorClassName}`}
+        className="inline"
+        style={{
+            color: getCurrentTextColor() || "inherit",
+            fontSize: "30px",
+        }}
         >
-        {cursorCharacter}
+        {displayedText}
         </span>
-    )
+
+        {showCursor && (
+        <span
+            ref={cursorRef}
+            className={`ml-1 inline-block ${shouldHideCursor ? "hidden" : ""} ${cursorClassName}`}
+        >
+            {cursorCharacter}
+        </span>
+        )}
+    </div>
+
+    <div className="grid grid-cols-2 gap-30 items-center">
+    <SoftButton label="EXPLORE ME" onClick={handleExploreMe} />
+    <SoftButton label="CONTACT ME" onClick={handleContactMe} />
+    </div>
+    </div>
     );
 
 };

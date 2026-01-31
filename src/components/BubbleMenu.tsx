@@ -230,13 +230,13 @@ export default function BubbleMenu({
               logo
             )}
           </span>
-          <text 
+          <span
             style={{
               color: "#000",
               fontWeight: "bold"
             }}
           >{greeting}
-          </text>
+          </span>
         </div>
 
         <button
