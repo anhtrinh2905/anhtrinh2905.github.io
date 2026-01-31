@@ -25,3 +25,10 @@ export function getGreeting(name?: string) {
       return `Good evening${who}! Time to relax and recharge 🌙`;
   }
 }
+
+export const textTyping = [
+  "👋 Hello there!",
+  "✨ My name is Lan Anh.",
+  "🤖 I'm an AI Engineer.",
+  "💻🎀 Cute girl impersonating a coder."
+];

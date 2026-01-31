@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { MenuItem } from '@/types/menu';
 import { MENU_ITEMS } from '@/lib/menu';
+import TextType from './TextType';
 
 export type BubbleMenuProps = {
   logo: ReactNode | string;
@@ -279,7 +280,7 @@ export default function BubbleMenu({
         </button>
       </nav>
 
-      {showOverlay && (
+      {showOverlay ? (
         <div
           ref={overlayRef}
           className={[
@@ -373,6 +374,15 @@ export default function BubbleMenu({
             ))}
           </ul>
         </div>
+      ): (
+        <TextType 
+          typingSpeed={75}
+          pauseDuration={1500}
+          showCursor
+          cursorCharacter="_"
+          deletingSpeed={50}
+          cursorBlinkDuration={0.5}
+        />
       )}
     </>
   );
