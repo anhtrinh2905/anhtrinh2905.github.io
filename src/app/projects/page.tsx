@@ -1,6 +1,6 @@
 import { Header } from "@/components/Header";
 
-export default function Project() {
+export default function Projects() {
     return (
         <section>
         <Header/>

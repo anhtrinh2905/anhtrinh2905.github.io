@@ -1,11 +1,9 @@
-import Link from "next/link"
-import { Header } from "@/components/Header"
+import BubbleMenu from "@/components/BubbleMenu";
+import { getGreeting } from "@/lib/greeting";
 
-export default function Page() {
+export default function App() {
+  const greeting = getGreeting()
   return (
-    <div>
-    <Header/>
-    <h1>Hello this is Lan Anh Portfolio</h1>
-    </div>
+    <BubbleMenu logo={'cat_logo.svg'} greeting={greeting}/>
   )
 }
