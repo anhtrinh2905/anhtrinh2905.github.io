@@ -1,10 +1,9 @@
 import { Header } from "@/components/Header"
 
-export default function Contact() {
+export default function Home() {
     return (
         <section>
-        <Header/>
-        <h1>This is Contact Page</h1>
+        <h1>This is Home Page</h1>
         </section>
     )
 }
