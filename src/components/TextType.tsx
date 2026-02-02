@@ -25,6 +25,7 @@ interface TextTypeProps {
   onSentenceComplete?: (sentence: string, index: number) => void;
   startOnVisible?: boolean;
   reverseMode?: boolean;
+  handleShowOverLay?: () => void | undefined;
 }
 
 const TextType = ({
@@ -46,6 +47,7 @@ const TextType = ({
   onSentenceComplete,
   startOnVisible = false,
   reverseMode = false,
+  handleShowOverLay,
   ...props
 }: TextTypeProps & React.HTMLAttributes<HTMLElement>) => {
   const [displayedText, setDisplayedText] = useState('');
@@ -71,10 +73,15 @@ const TextType = ({
   };
 
   const handleExploreMe = () => {
-    router.push('/home');
+    if (handleShowOverLay != undefined){
+      handleShowOverLay();
+    }
+    else {
+      router.push('/hone');
+    }
   }
   const handleContactMe = () => {
-    router.push('/contact')
+    router.push('/contact');
   }
 
   useEffect(() => {

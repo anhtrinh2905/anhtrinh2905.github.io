@@ -382,6 +382,7 @@ export default function BubbleMenu({
           cursorCharacter="_"
           deletingSpeed={50}
           cursorBlinkDuration={0.5}
+          handleShowOverLay={handleToggle}
         />
       )}
     </>
