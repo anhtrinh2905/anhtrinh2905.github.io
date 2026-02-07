@@ -4,6 +4,8 @@ import { FaSquareGithub } from "react-icons/fa6";
 import { IoMail, IoMailOpen} from "react-icons/io5";
 import { CiLinkedin } from "react-icons/ci";
 import Stack from "@/components/home/CardRotate";
+import CardWhatICanDo from "@/components/home/CardWhatIcanDo";
+import { WHATICANDO_INFO } from "@/lib/homePageInfo";
 
 
 export default function Home() {
@@ -11,7 +13,6 @@ export default function Home() {
 
     return (
         <section>
-
             {/* Basic information */}
             <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 lg:mt-20">
                 {/* Information */}
@@ -69,20 +70,20 @@ export default function Home() {
                 <div className="w-full flex justify-center lg:justify-start">
                     <div className="h-80 w-80 md:h-120 md:w-120 lg:h-180 lg:w-180 flex items-center justify-center">
                         <Stack
-                        randomRotation={false}
-                        sensitivity={120}
-                        sendToBackOnClick
-                        cards={LINK_IMAGE.map((src, i) => (
-                            <img
-                            key={i}
-                            src={src}
-                            alt={`card-${i + 1}`}
-                            className="h-full w-full object-cover"
-                            />
-                        ))}
-                        autoplay
-                        autoplayDelay={2500}
-                        pauseOnHover
+                            randomRotation={false}
+                            sensitivity={120}
+                            sendToBackOnClick
+                            cards={LINK_IMAGE.map((src, i) => (
+                                <img
+                                key={i}
+                                src={src}
+                                alt={`card-${i + 1}`}
+                                className="h-full w-full object-cover"
+                                />
+                            ))}
+                            autoplay
+                            autoplayDelay={2500}
+                            pauseOnHover
                         />
                     </div>
                 </div>
@@ -90,8 +91,20 @@ export default function Home() {
             </div>
 
             {/* What I can do */}
-            <div className="">
-
+            <div>
+                <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold flex items-center justify-center mt-25 md:mt-35 lg:mt-10">WHAT I CAN DO?</h1>
+                <div className="flex flex-col justify-center mb-10 mt-10 md:mt-20 gap-20 md:gap-30">
+                    { WHATICANDO_INFO.map((item, idx) => (
+                        <CardWhatICanDo  
+                            key={idx}
+                            linkToImage={item.linkToImage}
+                            title={item.title}
+                            icons={item.icons}
+                            contain={item.contain}
+                        />
+                    ))
+                    }
+                </div>
             </div>
 
         </section>

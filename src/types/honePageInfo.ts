@@ -7,3 +7,18 @@ export type basicInfoItem = {
     linkToLinkedin: string;
     linkToResume: string;
 }
+
+export type iconItem =  {
+    icon: string;
+    color: string;
+    title: string;
+}
+
+type item = {
+    linkToImage: string;
+    title: string;
+    icons: iconItem[];
+    contain: string[];
+}
+
+export type whatIcandoItem = item[]
