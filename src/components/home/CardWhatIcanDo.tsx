@@ -79,7 +79,7 @@ export default function CardWhatICanDo({
                                 className="
                                 flex items-center justify-center
                                 h-12 w-12 lg:h-14 lg:w-14
-                                rounded-xl  /* đổi thành rounded-full nếu muốn hình tròn */
+                                rounded-xl
                                 border border-white/15
                                 bg-white/5 backdrop-blur-sm
                                 shadow-[0_10px_30px_rgba(0,0,0,0.35)]

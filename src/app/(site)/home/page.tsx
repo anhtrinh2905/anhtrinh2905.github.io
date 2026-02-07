@@ -6,6 +6,7 @@ import { CiLinkedin } from "react-icons/ci";
 import Stack from "@/components/home/CardRotate";
 import CardWhatICanDo from "@/components/home/CardWhatIcanDo";
 import { WHATICANDO_INFO } from "@/lib/homePageInfo";
+import PageTransition from "@/components/PageTransition";
 
 
 export default function Home() {
