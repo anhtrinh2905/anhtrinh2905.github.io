@@ -2,7 +2,7 @@ interface CrollHintProps {
     id: string;
 }
 
-export default function CrollHint({
+export default function ScrollHint({
     id = '',
 }: CrollHintProps){
     const linkToSection = "#" + id;

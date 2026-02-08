@@ -6,7 +6,7 @@ import { CiLinkedin } from "react-icons/ci";
 import Stack from "@/components/home/CardRotate";
 import CardWhatICanDo from "@/components/home/CardWhatIcanDo";
 import { WHATICANDO_INFO } from "@/lib/homePageInfo";
-import CrollHint from "@/components/CrollHint";
+import ScrollHint from "@/components/ScrollHint";
 
 
 export default function Home() {
@@ -92,7 +92,7 @@ export default function Home() {
 
             {/* Scroll hint */}
             <div className="w-full flex justify-center mt-10">
-                <CrollHint id='what-i-can-do' />
+                <ScrollHint id='what-i-can-do' />
             </div>
 
 
