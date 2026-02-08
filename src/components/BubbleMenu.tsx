@@ -216,7 +216,7 @@ export default function BubbleMenu({
           }}
         >
           <span
-            className={['logo-content', 'inline-flex items-center justify-center', 'w-[50px] h-full'].join(' ')}
+            className={['logo-content', 'inline-flex items-center justify-center', 'w-10 h-full'].join(' ')}
             style={
               {
                 ['--logo-max-height']: '60%',
@@ -231,9 +231,9 @@ export default function BubbleMenu({
             )}
           </span>
           <span
+            className='text-xs md:text-xl'
             style={{
               color: "#000",
-              fontWeight: "bold"
             }}
           >{greeting}
           </span>
