@@ -23,9 +23,9 @@ export const MENU_ITEMS: MenuItem[] = [
     hoverStyles: { bgColor: '#f59e0b', textColor: '#ffffff' }
   },
   {
-    label: 'Experiment',
-    href: '/experiment',
-    ariaLabel: 'Experiment',
+    label: 'Experience',
+    href: '/experience',
+    ariaLabel: 'Experience',
     rotation: 8,
     hoverStyles: { bgColor: '#ef4444', textColor: '#ffffff' }
   },
