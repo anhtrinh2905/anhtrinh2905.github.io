@@ -67,7 +67,7 @@ export default function CardWhatICanDo({
                     transition={{ duration: 1.2, ease: "easeOut", delay: 0.2 }}
                     className="w-full lg:w-1/2"
                     >
-                        <h2 className="text-2xl lg:text-4xl font-semibold text-white flex justify-center">
+                        <h2 className="font-semibold text-white flex justify-center">
                             {title}
                         </h2>
 
@@ -103,7 +103,7 @@ export default function CardWhatICanDo({
                         ))}
                         </div>
 
-                        <ul className="m-0 md:m-5 space-y-5 text-1xl lg:text-2xl">
+                        <ul className="m-0 md:m-5 space-y-5">
                             { contain.map((text, idx) => (
                                 <li key={idx} className="flex gap-3">
                                     <span>⚡</span>
