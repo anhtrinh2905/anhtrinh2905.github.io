@@ -1,8 +1,11 @@
-import { EDUCATION_BASIC_INFO } from "@/lib/educationPageInfo"
+import EducationCard from "@/components/education/EducationCard"
+import { EDUCATION_BASIC_INFO, EDUCATION_DETAILS_INFO } from "@/lib/educationPageInfo"
 
 export default function Education() {
     return (
         <section className="w-full mt-10 md:mt-30 lg:mt-20">
+
+            {/* Basic information section */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
 
                 {/* Image education */}
@@ -33,7 +36,16 @@ export default function Education() {
                         {EDUCATION_BASIC_INFO.description}
                     </p>
                 </div>
+            </div>
 
+            {/* Education Info details */}
+            <div>
+                <h2 className="flex items-center justify-center mt-25 md:mt-35 lg:mt-30">University</h2>
+                <div className="flex flex-col justify-center p-10">
+                    {EDUCATION_DETAILS_INFO.map((item, idx) => (
+                    <EducationCard key={idx} {...item} />
+                    ))}
+                </div>
             </div>
         </section>
     )
