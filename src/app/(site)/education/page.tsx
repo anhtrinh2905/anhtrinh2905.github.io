@@ -40,7 +40,7 @@ export default function Education() {
 
             {/* Education Info details */}
             <div>
-                <h2 className="flex items-center justify-center mt-25 md:mt-35 lg:mt-30">University</h2>
+                <h2 className="flex items-center justify-center mt-25 md:mt-35 lg:mt-30">Degrees Received</h2>
                 <div className="flex flex-col justify-center p-10">
                     {EDUCATION_DETAILS_INFO.map((item, idx) => (
                     <EducationCard key={idx} {...item} />

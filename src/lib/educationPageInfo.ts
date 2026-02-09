@@ -11,7 +11,7 @@ export const EDUCATION_DETAILS_INFO : EducationDetailItems = [
     {
         schoolName: "University of Information Technology - Vietnam National University HCM City",
         period: "Oct 2022 – Sep 2025 (Educated)",
-        major: "Bachelor in Computer Science",
+        major: "B.S. Computer Science",
         logoSrc: "uit_logo.png",
         websiteUrl: "https://www.uit.edu.vn/",
         bullets: [
