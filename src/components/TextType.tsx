@@ -194,6 +194,8 @@ const TextType = ({
         ref: containerRef,
         className: `
         absolute
+        w-full
+        px-10
         top-1/2 left-1/2
         -translate-x-1/2 -translate-y-1/2
         inline-block
@@ -203,21 +205,25 @@ const TextType = ({
         `,
         ...props
     },
-    <div className="flex flex-col items-center gap-10 text-center">
-    <h1 className="text-5xl font-semibold tracking-wide">
-        WELCOME TO MY PORTFOLIO!
+    <div className="flex flex-col items-center gap-15 lg:25 text-center">
+    <h1 className="
+      text-center
+      text-3xl sm:text-4xl lg:text-5xl
+      font-extrabold
+      uppercase
+      tracking-[0.18em]
+      text-white
+      drop-shadow-[0_10px_30px_rgba(0,0,0.5,0.9)]
+    ">
+      Welcome to my portfolio!
     </h1>
 
     <div className="flex items-center">
-        <span
-        className="inline"
-        style={{
-            color: getCurrentTextColor() || "inherit",
-            fontSize: "30px",
-        }}
+        <h2
+        className="inline font-normal text-[#e6e9ec]"
         >
         {displayedText}
-        </span>
+        </h2>
 
         {showCursor && (
         <span
@@ -229,9 +235,9 @@ const TextType = ({
         )}
     </div>
 
-    <div className="grid grid-cols-2 gap-30 items-center">
-    <SoftButton label="EXPLORE ME" onClick={handleExploreMe} />
-    <SoftButton label="CONTACT ME" onClick={handleContactMe} />
+    <div className="grid grid-cols-2 gap-20 items-center">
+      <SoftButton label="EXPLORE ME" onClick={handleExploreMe} />
+      <SoftButton label="CONTACT ME" onClick={handleContactMe} />
     </div>
     </div>
     );

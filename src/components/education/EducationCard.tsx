@@ -15,7 +15,7 @@ export default function EducationCard({
 }: EducationCardProps) {
   return (
     <motion.div
-      className="w-full"
+      className="w-full overflow-x-hidden"
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.5 }}

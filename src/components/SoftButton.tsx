@@ -15,13 +15,12 @@ export default function SoftButton({
     <button
       className={[
         // layout
-        "flex items-center justify-center gap-[10px]",
-        "px-[28px] py-[16px]",
+        "flex items-center justify-center gap-5",
+        "px-10 py-4",
         "rounded-full",
 
         // typography
         "font-bold uppercase tracking-[0.5px]",
-        "text-[17px]",
         "text-[#7e97b8]",
 
         // background & border
@@ -42,11 +41,14 @@ export default function SoftButton({
         // active
         "active:shadow-none",
 
+        // Non whitespace
+        "whitespace-nowrap",
+
         className,
       ].join(" ")}
       {...props}
     >
-      {label}
+      <p>{label}</p>
     </button>
   );
 }

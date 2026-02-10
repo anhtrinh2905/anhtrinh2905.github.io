@@ -12,24 +12,6 @@ interface CardWhatICanDoProps {
     contain: string[];
 }
 
-const IconSvg = ({ color = "white", title = "Icon" }) => (
-  <svg
-    width="40"
-    height="40"
-    viewBox="0 0 24 24"
-    role="img"
-    aria-label={title}
-    style={{ color }}
-    className="shrink-0"
-  >
-    <title>{title}</title>
-    <path
-      fill="currentColor"
-      d="M12 2l3 7h7l-5.5 4 2 7L12 16l-6.5 4 2-7L2 9h7z"
-    />
-  </svg>
-);
-
 export default function CardWhatICanDo({
     linkToImage='ml_image.png',
     title='Title',
@@ -42,7 +24,7 @@ export default function CardWhatICanDo({
     const inView = useInView(ref, { once: true, margin: "-100px" });
 
     return (
-        <section ref={ref} className="w-full lg:mt-20">
+        <section ref={ref} className="w-full lg:mt-20 overflow-x-hidden">
             <div className="mx-auto px-4">
                 <div className="flex flex-col-reverse items-center gap-10 lg:flex-row lg:items-start">
                 
