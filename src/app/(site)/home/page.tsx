@@ -22,24 +22,6 @@ export default function Home() {
                     <h1 className="flex items-center justify-center lg:mt-10">{info.fullname}</h1>
                     <h2 className="flex items-center justify-center mt-4">( {info.position} )</h2>
                     <p className="text-center mt-4">{info.desciption}</p>
-                    {/* Button to link */}
-                    <div className="flex item-center justify-center mt-4 gap-10">
-                        <Link href={info.linkToGitHub} target="_blank" aria-label="Go to GitHub Page">
-                            <span className="inline-flex p-2 item-center justify-center">
-                                <FaSquareGithub className="w-10 h-10 hover:scale-125 transition-transform"/>
-                            </span>
-                        </Link>
-                        <Link href={info.linkToMail} target="_blank" aria-label="Mail to me">
-                            <span className="inline-flex p-2 item-center justify-center">
-                                <IoMail className="w-10 h-10 hover:scale-125 transition-transform"/>
-                            </span>
-                        </Link>
-                        <Link href={info.linkToLinkedin} target="_blank" aria-label="Go to Linkedin Page">
-                            <span className="inline-flex p-2 item-center justify-center">
-                                <CiLinkedin className="w-10 h-10 hover:scale-125 transition-transform"/>
-                            </span>
-                        </Link>
-                    </div>
                     <LinkButton
                         href={info.linkToResume}
                         target="_blank"
