@@ -16,18 +16,18 @@ export const MENU_ITEMS: MenuItem[] = [
     hoverStyles: { bgColor: '#10b981', textColor: '#ffffff' }
   },
   {
-    label: 'Projects',
-    href: '/projects',
-    ariaLabel: 'Projects',
-    rotation: 8,
-    hoverStyles: { bgColor: '#f59e0b', textColor: '#ffffff' }
-  },
-  {
     label: 'Experience',
     href: '/experience',
     ariaLabel: 'Experience',
     rotation: 8,
     hoverStyles: { bgColor: '#ef4444', textColor: '#ffffff' }
+  },
+  {
+    label: 'Projects',
+    href: '/projects',
+    ariaLabel: 'Projects',
+    rotation: 8,
+    hoverStyles: { bgColor: '#f59e0b', textColor: '#ffffff' }
   },
   {
     label: 'Contact',
