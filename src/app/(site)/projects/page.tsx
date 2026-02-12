@@ -1,3 +1,4 @@
+import LinkButton from "@/components/LinkButton";
 import ProjectShowcaseCard from "@/components/projects/ProjectShowcaseCard";
 import { PROJECTS_DETAILS, PROJECTS_BASIC_INFO } from "@/lib/projectsPageInfo";
 
@@ -12,6 +13,9 @@ export default function Projects() {
                 {PROJECTS_DETAILS.map((item, idx) => 
                     <ProjectShowcaseCard key={idx} {...item}/>
                 )}
+            </div>
+            <div className="mt-10 md:mt-15 lg:mt-20">
+                <LinkButton href={PROJECTS_BASIC_INFO.linkToGitHub} aria-label="Go to my Github" textToShow="SEE MORE PROJECTS" target="_blank"/>
             </div>
         </section>
     )

@@ -4,6 +4,7 @@ export const PROJECTS_BASIC_INFO = {
   title: "Featured Projects",
   description:
     "A selection of projects showcasing my work across AI/ML, LLM applications, Computer Vision, and interactive 3D web graphics.",
+  linkToGitHub: "https://github.com/lananh2905",
 };
 
 export const PROJECTS_DETAILS: ProjectShowcaseCardProps[] = [
