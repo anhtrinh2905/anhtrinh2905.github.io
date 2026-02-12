@@ -16,10 +16,17 @@ export default function ProjectShowcaseCard({
   media,
   className = ""
 }: ProjectShowcaseCardProps) {
+  // Create transition
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-200px" });
   return (
-    <section className={`w-full ${className} px-5 md:px-10`}>
+    <section ref={ref} className={`w-full ${className} px-5 md:px-10 overflow-y-hidden`}>
       {/* Wrapper */}
-      <div className="relative mx-auto max-w-5xl rounded-2xl border border-white/90">
+      <motion.div 
+        initial={{ opacity: 0, y: 100 }}
+        animate={inView? {opacity: 1, y: 0} : {}}
+        transition={{ duration: 1.2, ease: "easeOut"}}
+        className="relative mx-auto max-w-5xl rounded-2xl border border-white/90">
 
           {/* Media area */}
           <div className="relative overflow-hidden rounded-t-2xl bg-black/20">
@@ -111,7 +118,7 @@ export default function ProjectShowcaseCard({
             ) : null}
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
