@@ -1,51 +1,56 @@
 import { ProjectShowcaseCardProps } from "@/types/projectsPageInfo";
 
-export const PORJECTS_BASIC_INFO = {
+export const PROJECTS_BASIC_INFO = {
   title: "Featured Projects",
-  description: "Here are some of my recent projects that showcase my technical skills including AI, Machine Learning, LLMs, Computer Vision, Software, Computer Graphic."
-}
+  description:
+    "A selection of projects showcasing my work across AI/ML, LLM applications, Computer Vision, and interactive 3D web graphics.",
+};
 
-export const PROJECTS_DETAILS : ProjectShowcaseCardProps[] = [
+export const PROJECTS_DETAILS: ProjectShowcaseCardProps[] = [
   {
-    "title": "Vietnamese QA system",
-    "description": "A web application that allows users to create accounts, ask questions in Vietnamese based on their context, and store conversations in a database with fine-tuning 3 BERT models.",
-    "techs": ["LLMs", "Python", "FastAPI", "MongoDB", "React", "NestJS", "Express"],
-    "codeUrl": "https://github.com/lananh2905/QAA-MERN-Web",
-    "media": {
-        type: "video",
-        src: "videos/chatbot.mp4",
-    }
-  },
-  {
-    "title": "Detect & Reconstruct Multiple QRCodes",
-    "description": "A Computer Vision project for detecting multiple 2D QR codes in an image and reconstructing their content individually. Trained models using HOG + SVM, fine-tuned Faster R-CNN, and YOLOv8 for QR code detection. Reconstruction was performed using ZBar-based decoding techniques.",
-    "techs": ["Computer Vision", "HOG + SVM", "Faster R-CNN", "Yolov8", "Python", "Streamlit"],
-    "codeUrl": "https://github.com/OnionSm/CS406_AHA",
-    "media": {
-        type: "video",
-        src: "videos/qr_code.mp4",
+    title: "Vietnamese Question-Answering System",
+    description:
+      "Full-stack Vietnamese QA web app with user accounts and persistent chat history. Built an end-to-end pipeline for contextual Q&A and experimented with fine-tuning multiple BERT-based models to improve answer quality.",
+    techs: ["LLMs", "Python", "FastAPI", "MongoDB", "React", "NestJS", "Express"],
+    codeUrl: "https://github.com/lananh2905/QAA-MERN-Web",
+    media: {
+      type: "video",
+      src: "videos/chatbot.mp4",
     },
-    "detailUrl": "https://drive.google.com/file/d/1NmYXsXEPbOCOE-WWvQETMli30bdtSUq0/view?usp=sharing"
   },
   {
-    "title": "Information Retrieval from KENH14 News Portal",
-    "description": "A system that crawls articles from KENH14 and provides a web interface for keyword-based search with ranked results. Implemented Vector Space Model and BM25 for ranking relevance for search Algorithms.",
-    "techs": ["Python", "BM25", "VSM", "HTML", "Javascrip", "GCP"],
-    "codeUrl": "https://github.com/OnionSm/CS419_Information_Retrieval",
-    "media": {
-        type: "image",
-        src: "information_retrievel.png",
-        alt: "Information Retrievel",
-    }
+    title: "Multi-QR Code Detection & Reconstruction",
+    description:
+      "Computer Vision pipeline to detect multiple QR codes in a single image and reconstruct each payload independently. Evaluated classical and deep learning approaches (HOG+SVM, Faster R-CNN, YOLOv8) and integrated decoding for robust reconstruction.",
+    techs: ["Computer Vision", "HOG + SVM", "Faster R-CNN", "YOLOv8", "Python", "Streamlit"],
+    codeUrl: "https://github.com/OnionSm/CS406_AHA",
+    detailUrl: "https://drive.google.com/file/d/1NmYXsXEPbOCOE-WWvQETMli30bdtSUq0/view?usp=sharing",
+    media: {
+      type: "video",
+      src: "videos/qr_code.mp4",
+    },
   },
   {
-    "title": "Solar System Simulation",
-    "description": "A web application that simulates the solar system in real-time, including planetary orbits, velocities, satellites, moons, and asteroid belts. Users can interact and customize the simulation based on their preferences. Developed using Three.js and Blender; deployed on Google Cloud Platform.",
-    "techs": ["Three.js", "Blender", "HTML", "Javascrip", "GCP"],
-    "codeUrl": "https://github.com/OnionSm/Solar_System",
-    "media": {
-        type: "video",
-        src: "videos/solar_system.mp4",
-    }
+    title: "News Search Engine for KENH14 (Information Retrieval)",
+    description:
+      "Built a crawler + search interface for KENH14 articles, enabling keyword search with ranked results. Implemented and compared retrieval models including Vector Space Model (VSM) and BM25.",
+    techs: ["Python", "BM25", "VSM", "HTML", "JavaScript", "GCP"],
+    codeUrl: "https://github.com/OnionSm/CS419_Information_Retrieval",
+    media: {
+      type: "image",
+      src: "information_retrieval.png",
+      alt: "Information Retrieval Search UI",
+    },
   },
-]
+  {
+    title: "Real-time Solar System Simulation (3D Web)",
+    description:
+      "Interactive 3D solar system simulation with real-time orbits, velocities, moons/satellites, and asteroid belts. Built with Three.js and Blender assets, deployed on Google Cloud Platform.",
+    techs: ["Three.js", "Blender", "HTML", "JavaScript", "GCP"],
+    codeUrl: "https://github.com/OnionSm/Solar_System",
+    media: {
+      type: "video",
+      src: "videos/solar_system.mp4",
+    },
+  },
+];
