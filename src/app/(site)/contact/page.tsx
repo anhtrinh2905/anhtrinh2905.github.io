@@ -6,6 +6,7 @@ import ContactInput from "@/components/contact/ContactInput"
 import OpenSourceIcon from "@/components/contact/OpenSourceIcon"
 import SendMessageButton from "@/components/contact/SendMessageButton"
 import { CONTACT_BASIC_INFO, CONTACT_GLASS_CARDS_INFO, CONTACT_INPUT_INFO, OPEN_SOURCE_ICONS_INFO } from "@/lib/contactPageInfo"
+import { Toast } from "@/components/Toast";
 
 export default function Contact() {
     
@@ -23,6 +24,13 @@ export default function Contact() {
         setFormValues((prev) => ({ ...prev, [name]: value }));
     };
 
+
+    const [toast, setToast] = useState<{
+        open: boolean;
+        message: string;
+        variant: "success" | "error";
+    }>({ open: false, message: "", variant: "success" });
+
     const onSend = async () => {
         try {
         const res = await fetch("/api/contact", {
@@ -33,19 +41,33 @@ export default function Contact() {
 
         if (!res.ok) {
             const body = await res.json().catch(() => ({}));
-            alert(body?.error ?? "Send failed. Please try again.");
+            setToast({
+            open: true,
+            message: body?.error ?? "Send failed. Please try again.",
+            variant: "error",
+            });
             return;
         }
 
-        alert("Sent successfully ✅! Thank for contacting me.");
-        } catch {
-        alert("Network error. Please try again.");
-        }
+        setToast({
+            open: true,
+            message: "Sent successfully ✅",
+            variant: "success",
+        });
+
+        // Optional: reset form after success
         setFormValues(initialValues);
+        } catch {
+        setToast({
+            open: true,
+            message: "Network error. Please try again.",
+            variant: "error",
+        });
+        }
     };
 
     return (
-        <section className="w-full mt-10 md:mt-30 lg:mt-20">
+        <section className="w-full mt-10 md:mt-30 lg:mt-15">
 
             {/* Headers */}
             <div className="flex flex-col items-center justify-center">
@@ -80,7 +102,7 @@ export default function Contact() {
                 {/* Right Body */}
                 <div className="flex flex-col gap-5">
 
-                    <div className="flex flex-col gap-8">
+                    <div className="flex flex-col gap-3 md:gap-8">
                         {CONTACT_INPUT_INFO.map((item, idx) => (
                             <ContactInput 
                                 key={idx}
@@ -95,6 +117,13 @@ export default function Contact() {
                     </div>
                 </div>
             </div>
+
+            <Toast
+                open={toast.open}
+                message={toast.message}
+                variant={toast.variant}
+                onClose={() => setToast((t) => ({ ...t, open: false }))}
+            />
         </section>
     )
 }
