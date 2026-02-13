@@ -2,12 +2,12 @@
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://anhtrinh2905.github.io/",
+  "homepage": "https://anhtrinh2905.github.io",
   "scripts": {
     "dev": "next dev",
-    "predeploy": "npm run build",
-    "deploy": "npx gh-pages -d out",
     "build": "next build",
+    "predeploy": "npm run build",
+    "deploy": "npx gh-pages -d out --dotfiles",
     "start": "next start",
     "lint": "eslint"
   },

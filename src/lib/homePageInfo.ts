@@ -4,7 +4,7 @@ export const HOMEPAGE_BASIC_INFOR : basicInfoItem = {
     fullname: 'TRINH THI LAN ANH',
     position: 'AI/SOFTWARE ENGINEER',
     desciption: 'I\'m passionate about AI and love exploring how intelligent systems can be designed, built, and improved. Through personal projects and experiments, I enjoy turning ideas into working solutions and learning new technologies along the way.',
-    linkToResume: 'https://drive.google.com/file/d/1YTKmUpPrL6oPiOOetD1ieJQ3qWrmQQkH/view'
+    linkToResume: 'https://drive.google.com/file/d/1M71pFK9wuqZrMxBNfJDONozZH0sPgnRp/view?usp=drive_link'
 }
 
 export const LINK_IMAGE = [
