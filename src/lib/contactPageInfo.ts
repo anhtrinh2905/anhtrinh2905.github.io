@@ -1,4 +1,4 @@
-import { ContactGlassCardProps, OpenSourceIconProps } from "@/types/contactPageInfo"
+import { ContactGlassCardProps, ContactInputProps, OpenSourceIconProps } from "@/types/contactPageInfo"
 import { FiPhoneCall } from "react-icons/fi";
 import { IoMail } from "react-icons/io5";
 import { FaGithub } from "react-icons/fa";
@@ -41,3 +41,24 @@ export const CONTACT_BASIC_INFO = {
     heading3: "MY OPEN SOURCES",
 }
 
+
+export const CONTACT_INPUT_INFO : ContactInputProps[] = [
+    {
+        id: "name",
+        label: "Name",
+        placeholder: "Enter your name",
+    },
+    {
+        id: "email",
+        type: "email",
+        label: "Email",
+        placeholder: "Enter your email",
+    },    
+    {   
+        as: "textarea",
+        id: "message",
+        label: "Message",
+        placeholder: "Enter your message",
+        rows: 4
+    },
+]
