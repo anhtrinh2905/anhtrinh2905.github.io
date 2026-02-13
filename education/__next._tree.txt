@@ -1,2 +1,5 @@
-:HL["/_next/static/chunks/ba2e69d10386606c.css","style"]
-0:{"buildId":"08wM2KVvYNUpHX01fnNyy","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"education","paramType":null,"paramKey":"education","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
+:HL["/_next/static/chunks/2d8cf861db2f0fae.css","style"]
+:HL["/_next/static/chunks/d54e702d1d7f4372.css","style"]
+:HL["/_next/static/media/Agustina-s.p.fa25ef7b.woff","font",{"crossOrigin":"","type":"font/woff"}]
+:HL["education_image.svg","image"]
+0:{"buildId":"WU0ixJ9elSn1FvJoKTOFx","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"(site)","paramType":null,"paramKey":"(site)","hasRuntimePrefetch":false,"slots":{"children":{"name":"education","paramType":null,"paramKey":"education","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
