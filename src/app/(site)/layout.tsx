@@ -5,12 +5,12 @@ import { Header } from "@/components/header/Header";
 import PageTransition from "@/components/PageTransition";
 import ScrollToTop from "@/components/ScrollToTop";
 import ".././globals.css";
-import Snowfall from "react-snowfall";
+import SnowBg from "@/components/SnowBg";
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <Snowfall />
+      <SnowBg />
       <Header />
       <PageTransition>{children}</PageTransition>
       <ScrollToTop />
