@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useLayoutEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { MenuItem } from '@/types/menu';
@@ -24,7 +24,7 @@ export const GooeyNav: React.FC<GooeyNavProps> = ({
   particleR = 100,
   timeVariance = 300,
   colors = [1, 2, 3, 1, 2, 3, 1, 4],
-  initialActiveIndex = 0
+  initialActiveIndex = 0,
 }) => {
   const pathname = usePathname();
 
@@ -33,15 +33,15 @@ export const GooeyNav: React.FC<GooeyNavProps> = ({
   const filterRef = useRef<HTMLSpanElement>(null);
   const textRef = useRef<HTMLSpanElement>(null);
 
-  const [activeIndex, setActiveIndex] = useState<number>(initialActiveIndex);
+  // Initialize activeIndex from route ASAP (prevents 1-frame mismatch on first render)
+  const routeIndex = items.findIndex((it) => it.href === pathname);
+  const [activeIndex, setActiveIndex] = useState<number>(() =>
+    routeIndex >= 0 ? routeIndex : initialActiveIndex
+  );
 
   const noise = (n = 1) => n / 2 - Math.random() * n;
 
-  const getXY = (
-    distance: number,
-    pointIndex: number,
-    totalPoints: number
-  ): [number, number] => {
+  const getXY = (distance: number, pointIndex: number, totalPoints: number): [number, number] => {
     const angle = ((360 + noise(8)) / totalPoints) * pointIndex * (Math.PI / 180);
     return [distance * Math.cos(angle), distance * Math.sin(angle)];
   };
@@ -54,8 +54,14 @@ export const GooeyNav: React.FC<GooeyNavProps> = ({
       time: t,
       scale: 1 + noise(0.2),
       color: colors[Math.floor(Math.random() * colors.length)],
-      rotate: rotate > 0 ? (rotate + r / 20) * 10 : (rotate - r / 20) * 10
+      rotate: rotate > 0 ? (rotate + r / 20) * 10 : (rotate - r / 20) * 10,
     };
+  };
+
+  const clearParticles = () => {
+    if (!filterRef.current) return;
+    const particles = filterRef.current.querySelectorAll('.particle');
+    particles.forEach((p) => filterRef.current!.removeChild(p));
   };
 
   const makeParticles = (element: HTMLElement) => {
@@ -102,30 +108,28 @@ export const GooeyNav: React.FC<GooeyNavProps> = ({
     }
   };
 
-  const updateEffectPosition = (element: HTMLElement) => {
+  const getLabelFromLi = (liEl: HTMLElement) => {
+    const a = liEl.querySelector('a');
+    return (a?.textContent ?? liEl.textContent ?? '').trim();
+  };
+
+  const updateEffectPosition = (liEl: HTMLElement) => {
     if (!containerRef.current || !filterRef.current || !textRef.current) return;
 
     const containerRect = containerRef.current.getBoundingClientRect();
-    const pos = element.getBoundingClientRect();
+    const pos = liEl.getBoundingClientRect();
 
     const styles = {
       left: `${pos.x - containerRect.x}px`,
       top: `${pos.y - containerRect.y}px`,
       width: `${pos.width}px`,
-      height: `${pos.height}px`
+      height: `${pos.height}px`,
     };
 
     Object.assign(filterRef.current.style, styles);
     Object.assign(textRef.current.style, styles);
 
-    // li contains Link text, so innerText is ok
-    textRef.current.innerText = element.innerText;
-  };
-
-  const clearParticles = () => {
-    if (!filterRef.current) return;
-    const particles = filterRef.current.querySelectorAll('.particle');
-    particles.forEach(p => filterRef.current!.removeChild(p));
+    textRef.current.textContent = getLabelFromLi(liEl);
   };
 
   const animateText = () => {
@@ -150,17 +154,19 @@ export const GooeyNav: React.FC<GooeyNavProps> = ({
     }
   };
 
-  // ✅ Sync activeIndex with current route
+  // Sync activeIndex with current route
   useEffect(() => {
-    const idx = items.findIndex(item => item.href === pathname);
+    const idx = items.findIndex((item) => item.href === pathname);
     if (idx >= 0) setActiveIndex(idx);
   }, [pathname, items]);
 
-  // Keep effect aligned with activeIndex
-  useEffect(() => {
+  // Keep effect aligned with activeIndex BEFORE paint (prevents first-nav double-text misalignment)
+  useLayoutEffect(() => {
     if (!navRef.current || !containerRef.current) return;
 
-    const activeLi = navRef.current.querySelectorAll('li')[activeIndex] as HTMLElement | undefined;
+    const liEls = navRef.current.querySelectorAll('li');
+    const activeLi = liEls[activeIndex] as HTMLElement | undefined;
+
     if (activeLi) {
       updateEffectPosition(activeLi);
       textRef.current?.classList.add('active');
@@ -174,6 +180,18 @@ export const GooeyNav: React.FC<GooeyNavProps> = ({
     });
 
     resizeObserver.observe(containerRef.current);
+
+    // Re-align after fonts are ready (fixes initial navigation / first render shifts)
+    const fonts = (document as any).fonts;
+    if (fonts?.ready) {
+      fonts.ready.then(() => {
+        const currentActiveLi = navRef.current?.querySelectorAll('li')[activeIndex] as
+          | HTMLElement
+          | undefined;
+        if (currentActiveLi) updateEffectPosition(currentActiveLi);
+      });
+    }
+
     return () => resizeObserver.disconnect();
   }, [activeIndex]);
 
@@ -184,14 +202,19 @@ export const GooeyNav: React.FC<GooeyNavProps> = ({
           :root {
             --linear-ease: linear(0, 0.068, 0.19 2.7%, 0.804 8.1%, 1.037, 1.199 13.2%, 1.245, 1.27 15.8%, 1.274, 1.272 17.4%, 1.249 19.1%, 0.996 28%, 0.949, 0.928 33.3%, 0.926, 0.933 36.8%, 1.001 45.6%, 1.013, 1.019 50.8%, 1.018 54.4%, 1 63.1%, 0.995 68%, 1.001 85%, 1);
           }
+
           .effect {
             position: absolute;
             opacity: 1;
             pointer-events: none;
             display: grid;
             place-items: center;
-            z-index: 1;
           }
+
+          /* Make overlays sit ABOVE the nav text so we can hide active anchor text cleanly */
+          .effect.filter { z-index: 10; }
+          .effect.text { z-index: 11; }
+
           .effect.text {
             color: white;
             transition: color 0.3s ease;
@@ -199,6 +222,7 @@ export const GooeyNav: React.FC<GooeyNavProps> = ({
           .effect.text.active {
             color: black;
           }
+
           .effect.filter {
             filter: blur(7px) contrast(100) blur(0);
             mix-blend-mode: lighten;
@@ -229,6 +253,7 @@ export const GooeyNav: React.FC<GooeyNavProps> = ({
               opacity: 1;
             }
           }
+
           .particle,
           .point {
             display: block;
@@ -250,6 +275,7 @@ export const GooeyNav: React.FC<GooeyNavProps> = ({
             opacity: 1;
             animation: point calc(var(--time)) ease 1 -350ms;
           }
+
           @keyframes particle {
             0% {
               transform: rotate(0deg) translate(calc(var(--start-x)), calc(var(--start-y)));
@@ -270,6 +296,7 @@ export const GooeyNav: React.FC<GooeyNavProps> = ({
               opacity: 1;
             }
           }
+
           @keyframes point {
             0% {
               transform: scale(0);
@@ -296,24 +323,33 @@ export const GooeyNav: React.FC<GooeyNavProps> = ({
               opacity: 0;
             }
           }
+
           li.active {
             color: black;
             text-shadow: none;
           }
-          li.active::after {
-            opacity: 1;
-            transform: scale(1);
+
+          /* KEY FIX: prevent drawing the label twice (anchor text + overlay text) */
+          li.active a {
+            color: transparent !important;
+            text-shadow: none !important;
           }
+
           li::after {
             content: "";
             position: absolute;
             inset: 0;
-            border-radius: 8px;
+            border-radius: 9999px;
             background: white;
             opacity: 0;
             transform: scale(0);
             transition: all 0.3s ease;
             z-index: -1;
+          }
+
+          li.active::after {
+            opacity: 1;
+            transform: scale(1);
           }
         `}
       </style>
@@ -325,7 +361,7 @@ export const GooeyNav: React.FC<GooeyNavProps> = ({
             className="flex gap-8 list-none p-0 px-4 m-0 relative z-[3]"
             style={{
               color: 'white',
-              textShadow: '0 1px 1px hsl(205deg 30% 10% / 0.2)'
+              textShadow: '0 1px 1px hsl(205deg 30% 10% / 0.2)',
             }}
           >
             {items.map((item, index) => (
@@ -338,15 +374,12 @@ export const GooeyNav: React.FC<GooeyNavProps> = ({
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    handleItemClick(e.currentTarget, index);
+                    handleItemClick(e.currentTarget as HTMLElement, index);
                   }
                 }}
                 tabIndex={0}
               >
-                <Link
-                  href={item.href}
-                  className="outline-none py-3 px-6 inline-block"
-                >
+                <Link href={item.href} className="outline-none py-3 px-6 inline-block">
                   {item.label}
                 </Link>
               </li>
@@ -354,6 +387,7 @@ export const GooeyNav: React.FC<GooeyNavProps> = ({
           </ul>
         </nav>
 
+        {/* Overlays (pill + text) */}
         <span className="effect filter" ref={filterRef} />
         <span className="effect text" ref={textRef} />
       </div>
